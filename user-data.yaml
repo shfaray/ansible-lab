@@ -1,0 +1,10 @@
+#cloud-config
+users:
+  - name: ansible
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKEkwWBq++E6Metke6B/yDa1hNQOdo/QGVMZo71WChf+ faray@sierra
+packages:
+  - openssh-server
+  - python3

@@ -1,0 +1,8 @@
+# Created by https://mrkandreev.name/snippets/gitignore-generator/#Ansible
+# Edit at https://mrkandreev.name/snippets/gitignore-generator/#Ansible
+
+### Ansible ###
+*.retry
+
+# End of https://mrkandreev.name/snippets/gitignore-generator/#Ansible
+
