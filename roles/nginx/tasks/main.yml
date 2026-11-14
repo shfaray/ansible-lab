@@ -7,6 +7,12 @@
     state: present
     update_cache: true
 
+- name: Включить charset utf-8
+  ansible.builtin.copy:
+    dest: /etc/nginx/conf.d/charset.conf
+    content: "charset utf-8;\n"
+  notify: reload nginx
+
 - name: Сгенерировать страницу из шаблона
   ansible.builtin.template:
     src: index.html.j2
@@ -18,4 +24,3 @@
     name: nginx
     state: started
     enabled: true
-
