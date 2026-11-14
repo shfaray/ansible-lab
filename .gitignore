@@ -7,3 +7,4 @@
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Ansible
 
 .vault_pass
+.env

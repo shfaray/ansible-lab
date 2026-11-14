@@ -1,6 +1,0 @@
----
-- name: Setup todo-compose
-  hosts: web
-  become: true
-  roles:
-    - todo_compose

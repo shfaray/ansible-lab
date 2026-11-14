@@ -1,0 +1,50 @@
+---
+- name: Задеплоить todo-app
+  hosts: apps
+  become: true
+  vars:
+    todo_dir: /opt/todo-app
+
+  tasks:
+    - name: Установить Docker и compose
+      ansible.builtin.apt:
+        name:
+          - docker.io
+          - python3-docker
+          - docker-compose-v2
+        state: present
+        update_cache: true
+
+    - name: Запустить Docker
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Создать каталог проекта
+      ansible.builtin.file:
+        path: "{{ todo_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Положить docker-compose.yml
+      ansible.builtin.copy:
+        src: docker-compose.yml
+        dest: "{{ todo_dir }}/docker-compose.yml"
+        mode: "0644"
+
+    - name: Положить .env с секретами
+      ansible.builtin.copy:
+        dest: "{{ todo_dir }}/.env"
+        mode: "0600"
+        content: |
+          POSTGRES_USER={{ todo_db_user }}
+          POSTGRES_PASSWORD={{ todo_db_password }}
+          POSTGRES_DB={{ todo_db_name }}
+      no_log: true
+
+    - name: Поднять проект
+      community.docker.docker_compose_v2:
+        project_src: "{{ todo_dir }}"
+        state: present
+        pull: always
