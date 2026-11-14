@@ -16,3 +16,4 @@
   become: true
   roles:
     - docker
+    - todo_app

@@ -1,3 +1,16 @@
-#SPDX-License-Identifier: MIT-0
----
-# tasks file for roles/todo_app
+- name: Запустить контейнер todo-app
+  community.docker.docker_container:
+    name: todo-app
+    image: "{{ todo_app_image }}:{{ todo_app_tag }}"
+    state: started
+    pull: always
+    restart_policy: unless-stopped
+    published_ports:
+      - "{{ todo_app_port }}:3000"
+    env:
+      DB_HOST: "{{ hostvars['db1'].ansible_host }}"
+      DB_PORT: "5432"
+      DB_USER: "{{ todo_db_user }}"
+      DB_PASSWORD: "{{ todo_db_password }}"
+      DB_NAME: "{{ todo_db_name }}"
+  no_log: true
