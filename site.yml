@@ -1,19 +1,6 @@
 ---
-- name: Setup web-servers
+- name: Setup todo-compose
   hosts: web
   become: true
   roles:
-    - nginx
-
-- name: Setup DB
-  hosts: db
-  become: true
-  roles:
-    - postgresql
-
-- name: Настроить сервер приложения
-  hosts: app
-  become: true
-  roles:
-    - docker
-    - todo_app
+    - todo_compose

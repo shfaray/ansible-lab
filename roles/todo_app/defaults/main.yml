@@ -1,4 +1,0 @@
----
-todo_app_image: ghcr.io/farayshade/todo-app
-todo_app_tag: latest
-todo_app_port: 3000
