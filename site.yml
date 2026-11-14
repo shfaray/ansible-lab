@@ -1,6 +1,12 @@
 ---
-- name: Настроить web-серверы
+- name: Setup web-servers
   hosts: web
   become: true
   roles:
     - nginx
+
+- name: Setup DB
+  hosts: db
+  become: true
+  roles:
+    - postgresql
