@@ -10,3 +10,9 @@
   become: true
   roles:
     - postgresql
+
+- name: Настроить сервер приложения
+  hosts: app
+  become: true
+  roles:
+    - docker
