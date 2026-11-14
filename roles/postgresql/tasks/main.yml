@@ -13,3 +13,16 @@
     name: postgresql
     state: started
     enabled: true
+
+- name: Создать пользователя БД
+  community.postgresql.postgresql_user:
+    name: "{{ todo_db_user }}"
+    password: "{{ todo_db_password }}"
+  become_user: postgres
+  no_log: true
+
+- name: Создать базу данных
+  community.postgresql.postgresql_db:
+    name: "{{ todo_db_name }}"
+    owner: "{{ todo_db_user }}"
+  become_user: postgres

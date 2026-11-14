@@ -1,0 +1,4 @@
+---
+todo_db_name: todo
+todo_db_user: todo
+todo_db_password: "{{ vault_todo_db_password }}"
